@@ -1,13 +1,3 @@
-/*
-Base de datos de mis libros y precios de reventa. Orden:
-Menu:
-1 Ingresar libro/s (título, Editorial, precio de reventa).
-2 Mostrar, según pida el usuario:
-2.1 Completo. 
-2.2 Título+precio.
-2.3 Título+editorial.
-3 Salir.
-*/
 
 class Libro {
     constructor(titulo, editorial, precio) {
@@ -29,57 +19,59 @@ function agregarLibro() {
     libros.push(producto);
 }
 
-const opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
-alert(opcion);
+let opcion = 0
+do{
+    opcion = parseInt(prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir."));//3
 
-
-
-if (opcion == 1) {
-    titulo = prompt("Ingrese en Título de la obra (para finalizar coloque FIN)");
-    
-    while (titulo !== "FIN") {
-        editorial = prompt("Ingrese Editorial");
-        precio = parseFloat(prompt("Ingrese precio de reventa"));
-    
-        let producto = new Libro(titulo, editorial, precio);
-        libros.push(producto);
-    
+    if (opcion == 1) {
         titulo = prompt("Ingrese en Título de la obra (para finalizar coloque FIN)");
-    }
         
-    alert("Finalizó el ingreso de sus libros");
-    opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
-}
-
-else if (opcion == 2) {
-    const opcionMostrar = prompt("Cómo desea que se muestre su lista?\n 1 Completo.\n 2 Título y precio.\n 3 Título y Editorial.\n 4 Volver al menú anterior.");
-
-    if (opcionMostrar == 1) {
-        alert(libros);
+        while (titulo !== "FIN") {
+            editorial = prompt("Ingrese Editorial");
+            precio = parseFloat(prompt("Ingrese precio de reventa"));
+        
+            let producto = new Libro(titulo, editorial, precio);
+            libros.push(producto);
+        
+            titulo = prompt("Ingrese en Título de la obra (para finalizar coloque FIN)");
+        }
+            
+        alert("Finalizó el ingreso de sus libros");
+    }else if (opcion == 2) {
+        let opcionMostrar = parseInt(prompt("Cómo desea que se muestre su lista?\n 1 Completo.\n 2 Título y precio.\n 3 Título y Editorial.\n 4 Volver al menú anterior."));
+    
+        if (opcionMostrar == 1) {
+            for(item of libros){
+                alert(` El titulo es: ${item.titulo}, la editorial: ${item.editorial}, y su precio es: $${item.precio}.`)
+            }
+        }
+        else if (opcionMostrar == 2) {
+            for(item of libros){
+                alert(` El titulo es: ${item.titulo}, y su precio es: $${item.precio}.`)
+            }
+        }
+        else if (opcionMostrar == 3) {
+            for(item of libros){
+                alert(` El titulo es: ${item.titulo} , la editorial: ${item.editorial}.`)
+            }
+        }
+        else if (opcionMostrar == 4) {
+        }
+        else {
+            alert("Opción incorrecta, reintente: ");
+        }
+    
+    }else if (opcion == 3) {
+        alert("Gracias!!!");    
+    }else {
+        alert("Su elección fue erronea, reintente!");
     }
-    else if (opcionMostrar == 2) {
-        alert(libros.titulo, libros.precio);
-    }
-    else if (opcionMostrar == 3) {
-        alert(libros.titulo, libros.editorial);
-    }
-    else if (opcionMostrar == 4) {
-        opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
-    }
-    else {
-        alert("Opción incorrecta, reintente: ");
-        opcionMostrar = prompt("Cómo desea que se muestre su lista?\n 1 Completo.\n 2 Título y precio.\n 3 Título y Editorial.\n 4 Volver al menú anterior.");
-    }
 
-}
 
-else if (opcion == 3) {
-    alert("Gracias!!!");
-    break;
-}
+}while(opcion != 3)
 
- else {
-    alert("Su elección fue erronea, reintente!");
-    opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
-}
+
+
+
+
 
