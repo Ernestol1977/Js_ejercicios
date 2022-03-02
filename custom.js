@@ -1,10 +1,7 @@
 /*
 Base de datos de mis libros y precios de reventa. Orden:
 Menu:
-1 Ingresar libro/s.
-1.1 Ingresar título.
-1.2 Ingresar Editorial.
-1.3 Precio estimado de reventa.
+1 Ingresar libro/s (título, Editorial, precio de reventa).
 2 Mostrar, según pida el usuario:
 2.1 Completo. 
 2.2 Título+precio.
@@ -24,41 +21,65 @@ class Libro {
 let libros = [];
 
 function agregarLibro() {
-    let titulo = prompt("Ingrese en Título de la obra");
+    let titulo = prompt("Ingrese en Título de la obra (para finalizar coloque FIN)");
     let editorial = prompt("Ingrese Editorial");
     let precio = parseFloat(prompt("Ingrese precio de reventa"));
-}
-let producto = new Libro(titulo, editorial, precio);
-libros.push(producto);
 
-for (let i = 0; i < 1; i++) {
-    agregarLibro();
-}
-
-const opcion = prompt("Ingrese una opción:\n 1 Ingresar libro/s.\n 2 Mostrar lista de libros.\n 3 Modificar un libro.");
-alert(opcion);
-
-if (opcion == 1) {
     let producto = new Libro(titulo, editorial, precio);
     libros.push(producto);
-} else if (opcion == 2) {
-    const opcionMostrar = prompt("Cómo desea que se muestre su lista?\n 1 Completo.\n 2 Tí      tulo y precio.\n 3 Título y Editorial.\n 4 Volver al menú anterior.");
-    alert(opcionMostrar);
+}
+
+const opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
+alert(opcion);
+
+
+
+if (opcion == 1) {
+    titulo = prompt("Ingrese en Título de la obra (para finalizar coloque FIN)");
+    
+    while (titulo !== "FIN") {
+        editorial = prompt("Ingrese Editorial");
+        precio = parseFloat(prompt("Ingrese precio de reventa"));
+    
+        let producto = new Libro(titulo, editorial, precio);
+        libros.push(producto);
+    
+        titulo = prompt("Ingrese en Título de la obra (para finalizar coloque FIN)");
+    }
+        
+    alert("Finalizó el ingreso de sus libros");
+    opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
+}
+
+else if (opcion == 2) {
+    const opcionMostrar = prompt("Cómo desea que se muestre su lista?\n 1 Completo.\n 2 Título y precio.\n 3 Título y Editorial.\n 4 Volver al menú anterior.");
 
     if (opcionMostrar == 1) {
         alert(libros);
-    } else if (opcionMostrar == 2) {
+    }
+    else if (opcionMostrar == 2) {
         alert(libros.titulo, libros.precio);
-    } else if (opcionMostrar == 3) {
+    }
+    else if (opcionMostrar == 3) {
         alert(libros.titulo, libros.editorial);
-    } else if (opcionMostrar == 4) {
-        alert(opcion);
-    } else {
-        alert("Opción incorrecta, reintente: " + opcionMostrar);
+    }
+    else if (opcionMostrar == 4) {
+        opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
+    }
+    else {
+        alert("Opción incorrecta, reintente: ");
+        opcionMostrar = prompt("Cómo desea que se muestre su lista?\n 1 Completo.\n 2 Título y precio.\n 3 Título y Editorial.\n 4 Volver al menú anterior.");
     }
 
-} else if (opcion == 3) {
-    
-} else {
-    alert("Su opción no se encuentre, vuelva a reintentar");
 }
+
+else if (opcion == 3) {
+    alert("Gracias!!!");
+    break;
+}
+
+ else {
+    alert("Su elección fue erronea, reintente!");
+    opcion = prompt("Ingrese la opción:\n1 Ingresar libros.\n2 Mostrar libros.\n3 Salir.");
+}
+
